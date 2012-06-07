@@ -19,7 +19,7 @@ TITLE="`echo "${IN:0:1}" | tr "[:lower:]" "[:upper:]"``echo "${IN:1}" | tr "[:up
 
 echo ""
 echo "We're now downloading a few resources to create the application '$NAME'..."
-eval curl http://localhost:8888/juzu-creator/juzu-sample.zip --O juzu-temp.zip
+eval curl https://github.com/benjp/juzu-creator/blob/master/juzu-sample.zip?raw=true --O juzu-temp.zip
 rm -Rf juzu-sample
 unzip -q juzu-temp.zip
 rm juzu-temp.zip
