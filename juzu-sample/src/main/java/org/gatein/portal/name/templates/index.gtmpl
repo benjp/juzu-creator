@@ -1,0 +1,5 @@
+<div id="{{name}}_div"></div>
+
+<script>
+    $('#{{name}}_div').html('${size}');
+</script>
