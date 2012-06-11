@@ -41,7 +41,7 @@
       <groupId>org.juzu</groupId>
       <artifactId>juzu-core</artifactId>
       <scope>provided</scope>
-      <version>0.4.5-SNAPSHOT</version>
+      <version>0.5-SNAPSHOT</version>
     </dependency>
 
     <!-- -->
@@ -76,7 +76,7 @@
       <artifactId>juzu-overlay-gatein</artifactId>
       <type>war</type>
       <scope>provided</scope>
-      <version>0.4.5-SNAPSHOT</version>
+      <version>0.5-SNAPSHOT</version>
     </dependency>
 
   </dependencies>

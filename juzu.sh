@@ -7,6 +7,7 @@ echo -n "#> "
 read IN
 
 NAME=`echo $IN | tr "[:upper:]" "[:lower:]" | sed "s/ //g"`
+UNAME="`echo "${NAME:0:1}" | tr "[:lower:]" "[:upper:]"``echo "${NAME:1}" | tr "[:upper:]" "[:lower:]"`"
 TITLE="`echo "${IN:0:1}" | tr "[:lower:]" "[:upper:]"``echo "${IN:1}" | tr "[:upper:]" "[:lower:]"`"
 
 #echo ""
@@ -29,6 +30,7 @@ echo "Preparing application '$NAME'..."
 cd juzu-sample
 mv src/main/java/org/gatein/portal/name "src/main/java/org/gatein/portal/$NAME"
 find . | xargs perl -Xpi -e "s/{{name}}/$NAME/g"
+find . | xargs perl -Xpi -e "s/{{uname}}/$UNAME/g"
 find . | xargs perl -Xpi -e "s/{{title}}/$TITLE/g"
 
 cd ..

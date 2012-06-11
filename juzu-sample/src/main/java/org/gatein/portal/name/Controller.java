@@ -1,9 +1,9 @@
 package org.gatein.portal.{{name}};
 
 import org.exoplatform.portal.application.PortalRequestContext;
-import org.juzu.Path;
-import org.juzu.View;
-import org.juzu.template.Template;
+import juzu.Path;
+import juzu.View;
+import juzu.template.Template;
 
 import javax.inject.Inject;
 import javax.portlet.PortletPreferences;
@@ -24,10 +24,6 @@ public class Controller
    @Inject
     PortletPreferences portletPreferences;
 
-   @Inject
-   public Controller()
-   {
-   }
 
    @View
    public void index() throws IOException
