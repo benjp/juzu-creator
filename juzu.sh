@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "JUZU APPLICATION GENERATOR 0.1"
+echo "JUZU APPLICATION GENERATOR 0.5"
 echo ""
 echo "What is the Application name ?"
 echo -n "#> "
@@ -20,7 +20,7 @@ TITLE="`echo "${IN:0:1}" | tr "[:lower:]" "[:upper:]"``echo "${IN:1}" | tr "[:up
 
 echo ""
 echo "We're now downloading a few resources to create the application '$NAME'..."
-eval curl -# -L http://github.com/downloads/benjp/juzu-creator/juzu-sample.zip --O juzu-temp.zip
+eval curl -# -L http://github.com/downloads/benjp/juzu-creator/juzu-sample-0.5.zip --O juzu-temp.zip
 rm -Rf juzu-sample
 unzip -q juzu-temp.zip
 rm juzu-temp.zip
