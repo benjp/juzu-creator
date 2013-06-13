@@ -3,159 +3,92 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-
-  <groupId>org.exoplatform.ecms</groupId>
-  <artifactId>{{name}}</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <parent>
+    <artifactId>addons-parent-pom</artifactId>
+    <groupId>org.exoplatform.addons</groupId>
+    <version>2</version>
+    <relativePath />
+  </parent>
+  <groupId>org.exoplatform.addons.{{name}}</groupId>
+  <artifactId>{{name}}-application</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>Juzu Application</name>
 
   <properties>
-    <maven.compiler.target>1.5</maven.compiler.target>
-    <maven.compiler.source>1.5</maven.compiler.source>
+    <!-- 3rd party libraries versions -->
+    <commons-lang3.version>3.1</commons-lang3.version>
+    <exoplatform.version>4.0.0</exoplatform.version>
+    <javax.enterprise.cdi.version>1.0-SP4</javax.enterprise.cdi.version>
+    <juzu.version>0.6.0</juzu.version>
   </properties>
 
   <dependencies>
 
     <!-- Application dependencies-->
-    <dependency>
-      <groupId>javax.portlet</groupId>
-      <artifactId>portlet-api</artifactId>
-      <scope>provided</scope>
-      <version>2.0</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <scope>provided</scope>
-      <version>2.5</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-      <scope>provided</scope>
-      <version>1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-core</artifactId>
-      <scope>provided</scope>
-      <version>0.5-SNAPSHOT</version>
-    </dependency>
-
-    <!-- -->
-    <dependency>
-      <groupId>org.exoplatform.kernel</groupId>
-      <artifactId>exo.kernel.container</artifactId>
-      <version>2.3.4-GA</version>
-      <scope>provided</scope>
-    </dependency>
       <dependency>
-          <groupId>org.exoplatform.core</groupId>
-          <artifactId>exo.core.component.organization.api</artifactId>
-          <version>2.3.4-GA</version>
-          <scope>provided</scope>
+        <groupId>javax.enterprise</groupId>
+        <artifactId>cdi-api</artifactId>
+        <version>${javax.enterprise.cdi.version}</version>
       </dependency>
       <dependency>
-          <groupId>org.exoplatform.portal</groupId>
-          <artifactId>exo.portal.component.portal</artifactId>
-          <version>3.2.3-PLF</version>
-          <scope>provided</scope>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons-lang3.version}</version>
+      </dependency>
+    <!-- Application dependencies-->
+      <!-- Import versions from platform project -->
+      <dependency>
+        <groupId>org.exoplatform.platform</groupId>
+        <artifactId>platform</artifactId>
+        <version>${exoplatform.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
       <dependency>
-          <groupId>org.exoplatform.portal</groupId>
-          <artifactId>exo.portal.webui.portal</artifactId>
-          <version>3.2.3-PLF</version>
-          <scope>provided</scope>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-bom-core</artifactId>
+        <version>${juzu.version}</version>
       </dependency>
-
-    <!-- Dependencies for war overlay -->
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-overlay-gatein</artifactId>
-      <type>war</type>
-      <scope>provided</scope>
-      <version>0.5-SNAPSHOT</version>
-    </dependency>
-
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-core</artifactId>
+        <version>${juzu.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-core</artifactId>
+        <version>${juzu.version}</version>
+        <classifier>sources</classifier>
+      </dependency>
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-plugins-less</artifactId>
+        <version>${juzu.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-plugins-portlet</artifactId>
+        <version>${juzu.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-plugins-upload</artifactId>
+        <version>${juzu.version}</version>
+      </dependency>
   </dependencies>
 
   <build>
     <finalName>{{name}}</finalName>
     <plugins>
-
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
+        <artifactId>maven-war-plugin</artifactId>
         <configuration>
-          <compilerArguments>
-            <sourcepath>${project.basedir}/src/main/java</sourcepath>
-          </compilerArguments>
+          <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
         </configuration>
       </plugin>
     </plugins>
-
-    <pluginManagement>
-      <plugins>
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <executions>
-          <execution>
-            <configuration>
-              <webappDirectory>${project.build.directory}/gatein</webappDirectory>
-              <overlays>
-                <overlay>
-                  <groupId>org.juzu</groupId>
-                  <artifactId>juzu-overlay-gatein</artifactId>
-                </overlay>
-              </overlays>
-            </configuration>
-            <goals>
-              <goal>war</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      </plugins>
-    </pluginManagement>
-
   </build>
-
-  <profiles>
-    <profile>
-      <id>deploy</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <version>2.4</version>
-            <executions>
-              <execution>
-                <id>copy</id>
-                <phase>install</phase>
-                <goals>
-                  <goal>copy</goal>
-                </goals>
-                <configuration>
-                  <artifactItems>
-                    <artifactItem>
-                      <groupId>org.gatein.portal</groupId>
-                      <artifactId>{{name}}</artifactId>
-                      <version>1.0-SNAPSHOT</version>
-                      <type>war</type>
-                      <overWrite>false</overWrite>
-                      <outputDirectory>/Users/benjamin/java/demos/eXo-Platform-tomcat-3.5.3-SS/tomcat-bundle/webapps</outputDirectory>
-                      <destFileName>{{name}}.war</destFileName>
-                    </artifactItem>
-                  </artifactItems>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 
 </project>

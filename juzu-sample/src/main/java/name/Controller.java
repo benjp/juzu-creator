@@ -1,6 +1,5 @@
-package org.gatein.portal.{{name}};
+package {{name}};
 
-import org.exoplatform.portal.application.PortalRequestContext;
 import juzu.Path;
 import juzu.View;
 import juzu.template.Template;
@@ -22,7 +21,7 @@ public class Controller
 
 
    @Inject
-    PortletPreferences portletPreferences;
+   PortletPreferences portletPreferences;
 
 
    @View
