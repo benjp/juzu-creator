@@ -9,7 +9,7 @@ read IN
 NAME=`echo $IN | tr "[:upper:]" "[:lower:]" | sed "s/ //g"`
 UNAME="`echo "${NAME:0:1}" | tr "[:lower:]" "[:upper:]"``echo "${NAME:1}" | tr "[:upper:]" "[:lower:]"`"
 TITLE="`echo "${IN:0:1}" | tr "[:lower:]" "[:upper:]"``echo "${IN:1}" | tr "[:upper:]" "[:lower:]"`"
-SAMPLE="juzu-sample-copy"
+SAMPLE="juzu-sample"
 #echo ""
 #echo "Which template do you want to use for this new application ?"
 #echo " 1 - Create a simple portlet application"
